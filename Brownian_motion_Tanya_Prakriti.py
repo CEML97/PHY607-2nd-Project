@@ -16,15 +16,15 @@ dt = T/N    #Time step
 
 #Initial Conditions
 x0 = 0.01  #Position
-v0 = 5.0  #Velocity
-L = 2  #Length of interval
-p = 0.8 #Probability the particle is removed from interval
+v0 = 50.0  #Velocity
+L = 200000  #Length of interval
+p = 0#Probability the particle is removed from interval
 time = np.linspace(0.0, T, N)    #Time interval
 
 #Physical Parameters
-gamma = 2.0 #Friction coefficient
+gamma = 0.5 #Friction coefficient
 m = 1.0   #Mass
-sigma = 0.5 #Noise
+sigma = 1.5 #Noise
 
 #Storing Variables
 Variables = np.array([x0, v0], float)   #for updating
@@ -64,3 +64,30 @@ fig, ax = plt.subplots()
 ax.plot(time, v)
 ax.set(xlabel="t (time)", ylabel="v (velocity)", title="Velocity vs time")
 fig.savefig("velocity.png")
+
+
+msd = np.cumsum((np.array(x) - x0)**2) / np.arange(1, len(x)+1)  # MSD for each time step
+
+fit_coeffs = np.polyfit(time, msd, 1)  # Linear fit
+fitted_msd = np.polyval(fit_coeffs, time)  # Evaluated linear fit
+
+# Plotting MSD and the linear fit
+plt.figure()
+plt.plot(time, msd, label="MSD (simulated)", alpha=0.75)
+plt.plot(time, fitted_msd, label=f"Linear fit: MSD = {fit_coeffs[0]:.4f}*t + {fit_coeffs[1]:.4f}", linestyle='--', color='red')
+plt.xlabel("t (time)")
+plt.ylabel("MSD (mean square displacement)")
+plt.title("Mean Square Displacement vs Time with Linear Fit")
+plt.legend()
+plt.savefig("msd_fitting.png")
+plt.show()
+
+num_bins = 50
+# Plotting Probability Distribution (Histogram)
+plt.figure()
+plt.hist(x, bins=num_bins, density=True, alpha=0.75)
+plt.xlabel("x (position)")
+plt.ylabel("Probability Density")
+plt.title("Probability Distribution of Position")
+plt.savefig("position_distribution.png")
+plt.show()
