@@ -1,0 +1,16 @@
+pyproject.toml
+src/UNKNOWN.egg-info/PKG-INFO
+src/UNKNOWN.egg-info/SOURCES.txt
+src/UNKNOWN.egg-info/dependency_links.txt
+src/UNKNOWN.egg-info/top_level.txt
+src/brownian_motion_sim/_inti_.py
+src/brownian_motion_sim/analysis/_init_.py
+src/brownian_motion_sim/analysis/error_analysis.py
+src/brownian_motion_sim/core/_init_.py
+src/brownian_motion_sim/core/sampling.py
+src/brownian_motion_sim/core/simulation.py
+src/brownian_motion_sim/visualization/_init_.py
+src/brownian_motion_sim/visualization/plotters.py
+tests/test_error_analysis.py
+tests/test_sampling.py
+tests/test_simulation.py
