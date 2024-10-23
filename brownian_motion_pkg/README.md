@@ -42,8 +42,10 @@ To run this package, you will need to install the dependencies listed in `requir
 
     On Windows: .\venv_brownian\Scripts\Activate
     On macOS/Linux: source venv_brownian/bin/activate
-3. Install Dependencies After activating the virtual environment, install the required dependencies using:
+3. To install the package run the following command:
+    pip install dist/brownian_motion_sim-0.1.1-py3-none-any.whl
+4. Install Dependencies After activating the virtual environment, install the required dependencies using:
 pip install -r requirements.txt
 
 # Running the package
-python __main__.py
+python \_\_main\_\_.py

@@ -35,6 +35,38 @@ class SimulationPlotter:
         plt.tight_layout()
         plt.show()
 
+        num_bins = 50
+        plt.figure()
+        plt.hist(x_euler_mean, density=True, bins=num_bins)
+        plt.xlabel('Position')
+        plt.ylabel('Density')
+        plt.title('position Distribution superimposed')
+        plt.show()
+
+        m = 1 
+        num_bins = 50
+        def boltzmann_distribution(v, m):
+            return np.exp(-m * v**2 / 2)*0.4
+
+        v = np.linspace(min(v_euler_mean), max(v_euler_mean), 1000)
+        
+        plt.figure()
+        plt.hist(v_euler_mean, density=True, bins=num_bins, alpha=0.6)
+
+        # Define a smooth range of velocity values for plotting the curve
+        
+        # Plot the function on top of the histogram
+        plt.plot(v, boltzmann_distribution(v, m), 'r-')
+
+        # Add labels and legend
+        plt.xlabel('Velocity (v)')
+        plt.ylabel('Density')
+        plt.title('Velocity Distribution superimposed with boltzman distribution')
+        plt.legend()
+
+        # Show the plot
+        plt.show()
+
     @staticmethod
     def plot_error_analysis(time, numerical_error, statistical_error, finite_precision_errors):
         """Plot various types of errors from the simulation."""
@@ -49,7 +81,7 @@ class SimulationPlotter:
 
         # Plot statistical error
         plt.figure(figsize=(12, 6))
-        plt.plot(time, statistical_error, label='Statistical Error', color='blue')
+        plt.plot(np.sqrt(time), statistical_error, label='Statistical Error', color='blue')
         plt.xlabel('Time')
         plt.ylabel('Error')
         plt.title('Statistical Error over Time')

@@ -39,7 +39,7 @@ class SimulationResults:
         """Calculate numerical error between Euler and RK4 methods."""
         x_euler_mean = np.mean(self.x_euler_all, axis=0)
         x_rk4_mean = np.mean(self.x_rk4_all, axis=0)
-        return np.abs(x_euler_mean - x_rk4_mean)
+        return (x_euler_mean - x_rk4_mean)
 
     def calculate_statistical_error(self):
         """Calculate statistical error in Euler method."""
