@@ -48,4 +48,4 @@ To run this package, you will need to install the dependencies listed in `requir
 pip install -r requirements.txt
 
 # Running the package
-python __main__.py
+python \_\_main\_\_.py
